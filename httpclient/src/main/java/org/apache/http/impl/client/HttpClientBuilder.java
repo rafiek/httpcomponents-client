@@ -1013,7 +1013,15 @@ public class HttpClientBuilder {
                 poolingmgr.setDefaultMaxPerRoute(maxConnPerRoute);
             }
             connManagerCopy = poolingmgr;
+        } else if (systemProperties) {
+            // replace registry with socksFactory if socks properties are set
+            String socksProxyHost = System.getProperty("socksProxyHost");
+            String socksProxyPort = System.getProperty("socksProxyPort");
+            if (socksProxyHost != null && socksProxyPort != null) {
+                
+            }
         }
+
         ConnectionReuseStrategy reuseStrategyCopy = this.reuseStrategy;
         if (reuseStrategyCopy == null) {
             if (systemProperties) {
